@@ -48,8 +48,8 @@ const (
 
 // A ValueSetter can have a GPIO value set on it.
 //
-// When passing a bidirectional GpioPin to a function that accepts a
-// ValueSetter, the caller must first configure the GpioPin as an output
+// When passing a bidirectional Pin to a function that accepts a
+// ValueSetter, the caller must first configure the Pin as an output
 // using SetDirection.
 type ValueSetter interface {
 	SetValue(value Value) (err error)
@@ -57,8 +57,8 @@ type ValueSetter interface {
 
 // A ValueGetter can have a GPIO value read from it.
 //
-// When passing a bidirectional GpioPin to a function that accepts a
-// ValueGetter, the caller must first configure the GpioPin as an input
+// When passing a bidirectional Pin to a function that accepts a
+// ValueGetter, the caller must first configure the Pin as an input
 // using SetDirection.
 type ValueGetter interface {
 	Value() (value Value, err error)
@@ -93,17 +93,17 @@ type Puller interface {
 	PullStopper
 }
 
-// A GpioPin can do the most commonly-available operations available for GPIO
+// A Pin can do the most commonly-available operations available for GPIO
 // pins: set a signal direction, and then set a value or read a value depending
 // on the chosen direction.
 //
 // This aggregate interface is provided to describe the return type of
-// functions that instantiate GpioPins, but hardware drivers that consume
-// GPIO pins and yet don't need bidirectional access (which is the common case)
+// functions that instantiate Pins. Hardware drivers that consume
+// GPIO pins but don't need bidirectional access (which is the common case)
 // should depend directly on ValueGetter or ValueSetter to illustrate clearly
 // to the user how the GPIO pin will be used by the driver, and thus help avoid
 // unusual situations like two devices trying to drive the same signal.
-type GpioPin interface {
+type Pin interface {
 	ValueGetter
 	ValueSetter
 	DirectionSetter
