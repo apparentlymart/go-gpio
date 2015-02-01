@@ -88,6 +88,7 @@ type Puller interface {
 // A GpioPin can do the most commonly-available operations available for GPIO
 // pins: set a signal direction, and then set a value or read a value depending
 // on the chosen direction.
+//
 // This aggregate interface is provided to describe the return type of
 // functions that instantiate GpioPins, but hardware drivers that consume
 // GPIO pins and yet don't need bidirectional access (which is the common case)
