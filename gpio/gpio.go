@@ -47,11 +47,19 @@ const (
 )
 
 // A ValueSetter can have a GPIO value set on it.
+//
+// When passing a bidirectional GpioPin to a function that accepts a
+// ValueSetter, the caller must first configure the GpioPin as an output
+// using SetDirection.
 type ValueSetter interface {
 	SetValue(value Value) (err error)
 }
 
 // A ValueGetter can have a GPIO value read from it.
+//
+// When passing a bidirectional GpioPin to a function that accepts a
+// ValueGetter, the caller must first configure the GpioPin as an input
+// using SetDirection.
 type ValueGetter interface {
 	Value() (value Value, err error)
 }
